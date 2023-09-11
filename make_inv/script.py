@@ -4,13 +4,8 @@ import toml
 
 data = toml.load("make_inv/config.toml")
 
-test_partner = {}
-for key, value in data['sites']['testpartner'].items():
-	test_partner.update({ key : value })
-
-test_partner_db = {}
-for key, value in data['sites']['testpartner']['db'].items():
-	test_partner_db.update({ key : value })
+test_partner = data['sites']['testpartner']
+test_partner_db = data['sites']['testpartner']['db']
 
 template = Template("""[{{group}}]
 {{partner}} ansible_host={{ip}}\n

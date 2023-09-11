@@ -1,0 +1,19 @@
+---
+- hosts: it-project-db
+  connection: local
+
+  tasks:
+    - name: Create devdb database
+      mysql_db:
+        name: "{{ base }}"
+        state: present
+        login_user: root
+        login_password: "{{ mysql_root_password }}" 
+
+    - name: Create user dev in database
+      mysql_user:
+        name: "{{ user }}" 
+        password: "{{ password }}"
+        priv: '*.*:ALL'
+        state: present
+

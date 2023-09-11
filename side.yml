@@ -1,0 +1,5 @@
+- name: Run role
+  hosts: it-project-db
+  connection: local
+  roles:
+    - prepare_mysql_server 
